@@ -1,10 +1,10 @@
-def getDownloadLink(branch = "master", platform = "win"){
+def getDownloadURL(branch = "master", platform = "win", proxy = ""){
+  
   def url = "https://download.eclipse.org/capella/core/products/nightly/${branch}/"
-  def fileName = "capella.html"
+  def script = proxy.isEmpty() ? "curl -ks ${url}" : "curl -ks -x ${proxy} ${url}"
   
-  sh "curl -o ${fileName} -k ${url}"
-  def html = readFile "${WORKSPACE}/${fileName}"
-  
+  def html = sh(script: "${script}", returnStdout: true)
+
   def regex = ""
 
   switch(platform){

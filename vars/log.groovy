@@ -1,13 +1,11 @@
 def info(message) {
-  println "INFO: " + message
+  echo "INFO: %{message}"
 }
 
 def warning(message) {
-  println "WARNING: " + message
+  echo "WARNING: ${message}"
 }
 
 def error(message) {
-  println "ERROR: " + message
+  echo "WARNING: ${message}"
 }
-
-fo

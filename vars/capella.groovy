@@ -25,8 +25,7 @@ def getDownloadURL(branch = "master", platform = "win", proxy = ""){
           break
   }
   
-  def tokens = html =~ regex
-  def zipName = tokens[0][1]
+  def zipName = (html =~ regex)[0][1]
 
   return url + zipName
 }

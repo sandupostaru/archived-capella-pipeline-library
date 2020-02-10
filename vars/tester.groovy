@@ -42,8 +42,10 @@ def runUITests(String capellaProductPath, String suiteTitle, String testPluginNa
   def junitCmd = getUIJunitCmd(capellaProductPath)
   def testClassNamesParam = testClassNames.join(" ")
   
+  wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+    sh "${runnerCmd} -title ${suiteTitle} & ${junitCmd} - data ${WORKSPACE}/${suiteTitle} -testpluginname ${testPluginName} -classNames ${testClassNamesParam}"
+  }
   
-  sh "${runnerCmd} -title ${suiteTitle} & ${junitCmd} - data ${WORKSPACE}/${suiteTitle} -testpluginname ${testPluginName} -classNames ${testClassNamesParam}"
 }
 
 def runNONUITests(String capellaProductPath, String suiteTitle, String testPluginName, List<String> testClassNames) {
@@ -51,6 +53,8 @@ def runNONUITests(String capellaProductPath, String suiteTitle, String testPlugi
   def junitCmd = getNONUIJunitCmd(capellaProductPath)
   def testClassNamesParam = testClassNames.join(" ")
   
+  wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+  	sh "${runnerCmd} -title ${suiteTitle} & ${junitCmd} - data ${WORKSPACE}/${suiteTitle} -testpluginname ${testPluginName} -classNames ${testClassNamesParam}"
+  }
   
-  sh "${runnerCmd} -title ${suiteTitle} & ${junitCmd} - data ${WORKSPACE}/${suiteTitle} -testpluginname ${testPluginName} -classNames ${testClassNamesParam}"
 }

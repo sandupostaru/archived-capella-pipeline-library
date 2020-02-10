@@ -13,25 +13,25 @@ def pullRequestComment(pullRequestId, message) {
 }
 
 def buildStartedComment() {
-  def message = ":rocket: Build [${ENV.CHANGE_ID}-${ENV.BUILD_ID}](${ENV.BUILD_URL}) started!"
+  def message = ":rocket: Build [${CHANGE_ID}-${BUILD_ID}](${BUILD_URL}) started!"
   
-  pullRequestComment(ENV.CHANGE_ID, message)
+  pullRequestComment(CHANGE_ID, message)
 }
 
 def buildSuccessfullComment() {
-  def message = ":thumbsup: Build [${ENV.CHANGE_ID}-${ENV.BUILD_ID}](${ENV.BUILD_URL}) is successfull! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${BUILD_KEY})."
+  def message = ":thumbsup: Build [${CHANGE_ID}-${BUILD_ID}](${BUILD_URL}) is successfull! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${BUILD_KEY})."
   
-  pullRequestComment(ENV.CHANGE_ID, message)
+  pullRequestComment(CHANGE_ID, message)
 }
 
 def buildFailedComment() {
-  def message = ":disappointed: Build [${ENV.CHANGE_ID}-${ENV.BUILD_ID}](${ENV.BUILD_URL}) failed!"
+  def message = ":disappointed: Build [${CHANGE_ID}-${BUILD_ID}](${BUILD_URL}) failed!"
   
-  pullRequestComment(ENV.CHANGE_ID, message)
+  pullRequestComment(CHANGE_ID, message)
 }
 
 def buildUnstableComment(String pullRequestId) {
-  def message = ":worried: Build [${ENV.CHANGE_ID}-${ENV.BUILD_ID}](${ENV.BUILD_URL}) is unstable! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${BUILD_KEY})."
+  def message = ":worried: Build [${CHANGE_ID}-${BUILD_ID}](${BUILD_URL}) is unstable! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${BUILD_KEY})."
   
-  pullRequestComment(ENV.CHANGE_ID, message)
+  pullRequestComment(CHANGE_ID, message)
 }

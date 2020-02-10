@@ -1,6 +1,6 @@
 private def getRunnerCmd(String capellaProductPath) {
   return """
-		./${capellaProductPath}/capella 
+		./${capellaProductPath}
 			-port 8081 
 			-application org.polarsys.capella.test.run.application 
 			-data ${WORKSPACE}/runner >> ${WORKSPACE}/capella/runner.log
@@ -8,13 +8,17 @@ private def getRunnerCmd(String capellaProductPath) {
 }
 
 private def getJunitCmdTemplate(String capellaProductPath) {
+  
+  // extract the capella path, without the executable name
+  def capellaPath = capellaProductPath.substring(0, capellaProductPath.lastIndexOf("/"))
+  
   return """
     sleep 10 && 
     java 
       -Xms1024m -Xmx3500m -XX:+CMSPermGenSweepingEnabled -XX:+CMSClassUnloadingEnabled -ea 
       -Declipse.p2.data.area=@config.dir/../p2 
       -Dfile.encoding=Cp1252 
-      -classpath ${capellaProductPath}/plugins/org.eclipse.equinox.launcher_*.jar org.eclipse.equinox.launcher.Main 
+      -classpath ${capellaPath}/plugins/org.eclipse.equinox.launcher_*.jar org.eclipse.equinox.launcher.Main 
       -os linux 
       -ws gtk 
       -arch x86_64 
@@ -24,7 +28,7 @@ private def getJunitCmdTemplate(String capellaProductPath) {
       -loaderpluginname org.eclipse.jdt.junit4.runtime 
       -product org.polarsys.capella.rcp.product 
       -testApplication org.polarsys.capella.core.platform.sirius.ui.perspective.id 
-      -configuration file:${WORKSPACE}/capella/configuration 
+      -configuration file:${capellaPath}/configuration 
       -buildKey ${BUILD_KEY}"""
 }
 

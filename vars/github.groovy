@@ -18,19 +18,19 @@ def buildStartedComment() {
   pullRequestComment(ENV.CHANGE_ID, message)
 }
 
-def buildSuccessfull() {
+def buildSuccessfullComment() {
   def message = ":thumbsup: Build [${ENV.CHANGE_ID}-${ENV.BUILD_ID}](${ENV.BUILD_URL}) is successfull! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${BUILD_KEY})."
   
   pullRequestComment(ENV.CHANGE_ID, message)
 }
 
-def buildFailed() {
+def buildFailedComment() {
   def message = ":disappointed: Build [${ENV.CHANGE_ID}-${ENV.BUILD_ID}](${ENV.BUILD_URL}) failed!"
   
   pullRequestComment(ENV.CHANGE_ID, message)
 }
 
-def buildUnstable(String pullRequestId) {
+def buildUnstableComment(String pullRequestId) {
   def message = ":worried: Build [${ENV.CHANGE_ID}-${ENV.BUILD_ID}](${ENV.BUILD_URL}) is unstable! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${BUILD_KEY})."
   
   pullRequestComment(ENV.CHANGE_ID, message)

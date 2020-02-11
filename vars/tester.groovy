@@ -2,7 +2,7 @@ private def getRunnerCmd(String capellaProductPath) {
   return "./${capellaProductPath} " +
 			"-port 8081 " +
 			"-application org.polarsys.capella.test.run.application " +
-			"-data ${WORKSPACE}/runner >> ${WORKSPACE}/capella/runner.log"
+			"-data ${WORKSPACE}/runner >> ${WORKSPACE}/runner.log"
 }
 
 private def getJunitCmdTemplate(String capellaProductPath) {

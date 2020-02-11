@@ -1,6 +1,5 @@
 private def getRunnerCmd(String capellaProductPath) {
-  return 
-		"./${capellaProductPath} " +
+  return "./${capellaProductPath} " +
 			"-port 8081 " +
 			"-application org.polarsys.capella.test.run.application " +
 			"-data ${WORKSPACE}/runner >> ${WORKSPACE}/capella/runner.log"
@@ -11,8 +10,7 @@ private def getJunitCmdTemplate(String capellaProductPath) {
   // extract the capella path, without the executable name
   def capellaPath = capellaProductPath.substring(0, capellaProductPath.lastIndexOf("/"))
   
-  return 
-    "sleep 10 && " +
+  return "sleep 10 && " +
     "java " +
       "-Xms1024m -Xmx3500m -XX:+CMSPermGenSweepingEnabled -XX:+CMSClassUnloadingEnabled -ea " +
       "-Declipse.p2.data.area=@config.dir/../p2 " +
@@ -41,23 +39,17 @@ private def getNONUIJunitCmd(String capellaProductPath) {
 }
 
 def runUITests(String capellaProductPath, String suiteTitle, String testPluginName, List<String> testClassNames) {
-  def runnerCmd = getRunnerCmd(capellaProductPath)
-  def junitCmd = getUIJunitCmd(capellaProductPath)
-  def testClassNamesParam = testClassNames.join(' ')
-  
-  wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+    def runnerCmd = getRunnerCmd(capellaProductPath)
+    def junitCmd = getUIJunitCmd(capellaProductPath)
+    def testClassNamesParam = testClassNames.join(' ')
+    
     sh "${runnerCmd} -title ${suiteTitle} & ${junitCmd} -data ${WORKSPACE}/${suiteTitle} -testpluginname ${testPluginName} -classNames ${testClassNamesParam}"
-  }
-  
 }
 
 def runNONUITests(String capellaProductPath, String suiteTitle, String testPluginName, List<String> testClassNames) {
-  def runnerCmd = getRunnerCmd(capellaProductPath)
-  def junitCmd = getNONUIJunitCmd(capellaProductPath)
-  def testClassNamesParam = testClassNames.join(" ")
-  
-  wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
-  	sh "${runnerCmd} -title ${suiteTitle} & ${junitCmd} -data ${WORKSPACE}/${suiteTitle} -testpluginname ${testPluginName} -classNames ${testClassNamesParam}"
-  }
-  
+    def runnerCmd = getRunnerCmd(capellaProductPath)
+    def junitCmd = getNONUIJunitCmd(capellaProductPath)
+    def testClassNamesParam = testClassNames.join(' ')
+    
+    sh "${runnerCmd} -title ${suiteTitle} & ${junitCmd} -data ${WORKSPACE}/${suiteTitle} -testpluginname ${testPluginName} -classNames ${testClassNamesParam}"
 }

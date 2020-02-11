@@ -24,13 +24,13 @@ def buildFailedComment() {
   pullRequestComment(CHANGE_ID, message)
 }
 
-def buildUnstableComment(String pullRequestId) {
+def buildUnstableComment() {
   def message = ":worried: Build [${CHANGE_ID}-${BUILD_ID}](${BUILD_URL}) is unstable! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${BUILD_KEY})."
   
   pullRequestComment(CHANGE_ID, message)
 }
 
-def buildAbortedComment(String pullRequestId) {
+def buildAbortedComment() {
   def message = ":neutral_face: Build [${CHANGE_ID}-${BUILD_ID}](${BUILD_URL}) has been aborted!"
   
   pullRequestComment(CHANGE_ID, message)

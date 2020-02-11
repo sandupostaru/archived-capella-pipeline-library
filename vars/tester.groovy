@@ -26,7 +26,7 @@ private def getJunitCmdTemplate(String capellaProductPath, String applicationPar
       "-application ${applicationParam} " +
       "-product org.polarsys.capella.rcp.product " +
       "-testApplication org.polarsys.capella.core.platform.sirius.ui.perspective.id " +
-      "-configuration file:${env.WORKSPACE}/capella/configuration " +
+      "-configuration file:${capellaPath}/configuration " +
       "-buildKey ${BUILD_KEY}"
 }
 

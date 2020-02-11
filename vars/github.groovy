@@ -2,7 +2,7 @@ def pullRequestComment(pullRequestId, message) {
   def apiURL = "https://api.github.com/repos/eclipse/capella/issues/${pullRequestId}/comments"
   
   withCredentials([string(credentialsId: '0dea5761-867c-44db-92fa-9304c81a8653', variable: 'password')]) {
-  	sh """curl ${apiURL} -d '{"body":"${message}"}' -u "eclipse-capella-bot:${password}" -X POST -H "Content-Type: application/json""""
+  	sh """curl ${apiURL} -d '{"body":"${message}"}' -u 'eclipse-capella-bot:${password}' -X POST -H 'Content-Type: application/json'"""
   }
 }
 

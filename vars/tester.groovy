@@ -1,3 +1,10 @@
+private def getRunnerCmd(String capellaProductPath) {
+  return "${capellaProductPath} " +
+      "-port 8081 " +
+      "-application org.polarsys.capella.test.run.application " +
+      "-data ${WORKSPACE}/runner >> ${WORKSPACE}/runner.log"
+}
+
 private def getJunitCmdTemplate(String capellaProductPath, String applicationParam) {
   
   // extract the capella path, without the executable name

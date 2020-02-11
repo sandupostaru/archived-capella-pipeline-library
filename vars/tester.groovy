@@ -1,5 +1,5 @@
 private def getRunnerCmd(String capellaProductPath) {
-  return ".${capellaProductPath} " +
+  return "${capellaProductPath} " +
 			"-port 8081 " +
 			"-application org.polarsys.capella.test.run.application " +
 			"-data ${WORKSPACE}/runner >> ${WORKSPACE}/runner.log"

@@ -13,7 +13,8 @@ def buildStartedComment() {
 }
 
 def buildSuccessfullComment() {
-  def message = ":thumbsup: Build [${CHANGE_ID}-${BUILD_ID}](${BUILD_URL}) is successfull! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${BUILD_KEY})."
+  def buildDir = "${BUILD_KEY}-${BRANCH_NAME}-${BUILD_ID}".replaceAll('/','-')
+  def message = ":thumbsup: Build [${CHANGE_ID}-${BUILD_ID}](${BUILD_URL}) is successfull! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${buildDir})."
   
   pullRequestComment(CHANGE_ID, message)
 }
@@ -25,7 +26,8 @@ def buildFailedComment() {
 }
 
 def buildUnstableComment() {
-  def message = ":worried: Build [${CHANGE_ID}-${BUILD_ID}](${BUILD_URL}) is unstable! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${BUILD_KEY})."
+  def buildDir = "${BUILD_KEY}-${BRANCH_NAME}-${BUILD_ID}".replaceAll('/','-')
+  def message = ":worried: Build [${CHANGE_ID}-${BUILD_ID}](${BUILD_URL}) is unstable! The product is available [here](http://download.eclipse.org/capella/core/products/nightly/${buildDir})."
   
   pullRequestComment(CHANGE_ID, message)
 }

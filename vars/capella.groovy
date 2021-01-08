@@ -29,3 +29,4 @@ def getDownloadURL(branch = "master", platform = "win", proxy = ""){
 
   return url + zipName
 }
+
